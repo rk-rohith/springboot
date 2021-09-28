@@ -30,7 +30,7 @@ public class StudentController {
 	
 	@GetMapping("/getById/{id}")
 	public Student getStudentById(@PathVariable String id) {
-		return studentService.getStudentbyId(id);
+		return studentService.getStudentById(id);
 	}
 	
 	@GetMapping("/all")
@@ -50,17 +50,17 @@ public class StudentController {
 	
 	@GetMapping("/studentsByName/{name}")
 	public List<Student> studentsByName(@PathVariable String name) {
-		return studentService.getstudentsByName(name);
+		return studentService.getStudentsByName(name);
 	}
 	
 	@GetMapping("/studentsByNameAndMail")
 	public List<Student> studentsByNameAndMail(@RequestParam String name, @RequestParam String email) {
-		return studentService.getstudentsByNameAndMail(name, email);
+		return studentService.getStudentsByNameAndMail(name, email);
 	}
 	
 	@GetMapping("/studentsByNameOrMail")
 	public List<Student> studentsByNameOrMail(@RequestParam String name, @RequestParam String email) {
-		return studentService.getstudentsByNameOrMail(name, email);
+		return studentService.getStudentsByNameOrMail(name, email);
 	}
 	
 	@GetMapping("/byDepartmentName")
@@ -91,6 +91,11 @@ public class StudentController {
 	@GetMapping("/allWithSorting")
 	public List<Student> allWithSorting() {
 		return studentService.allWithSorting();
+	}
+
+	@GetMapping("/getByLocation/{location}")
+	public List<Student> getByLocation(@PathVariable String location){
+		return studentService.getByLocation(location);
 	}
 
 }

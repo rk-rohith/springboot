@@ -1,22 +1,27 @@
 package com.example.demo.service;
 
-import java.util.List;
-
+import com.example.demo.dao.StudentRepository;
+import com.example.demo.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.dao.StudentRepository;
-import com.example.demo.entity.Student;
+import java.util.List;
+
 
 @Service
 public class StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
+
+	@Autowired
+	MongoTemplate mongoTemplate;
 
 	public Student createStudent(Student student) {
 		return studentRepository.save(student);
@@ -35,19 +40,19 @@ public class StudentService {
 		return "Student has been deleted.";
 	}
 
-	public Student getStudentbyId(String id) {
+	public Student getStudentById(String id) {
 		return studentRepository.findById(id).get();
 	}
 
-	public List<Student> getstudentsByName(String name) {
+	public List<Student> getStudentsByName(String name) {
 		return studentRepository.findByName(name);
 	}
 
-	public List<Student> getstudentsByNameAndMail(String name, String email) {
+	public List<Student> getStudentsByNameAndMail(String name, String email) {
 		return studentRepository.findByNameAndEmail(name, email);
 	}
 
-	public List<Student> getstudentsByNameOrMail(String name, String email) {
+	public List<Student> getStudentsByNameOrMail(String name, String email) {
 		return studentRepository.findByNameOrEmail(name, email);
 	}
 
@@ -77,4 +82,9 @@ public class StudentService {
 		return studentRepository.findAll(sort);
 	}
 
+	public List<Student> getByLocation(String location) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("department.location").is(location));
+		return mongoTemplate.find(query, Student.class);
+	}
 }
