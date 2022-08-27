@@ -19,76 +19,76 @@ import java.util.List;
 @Service
 public class StudentService {
 
-	@Autowired
-	StudentRepository studentRepository;
+    @Autowired
+    StudentRepository studentRepository;
 
-	@Autowired
-	MongoTemplate mongoTemplate;
+    @Autowired
+    MongoTemplate mongoTemplate;
 
-	public Student createStudent(Student student) {
-		Student stud = studentRepository.save(student);
-		log.info("Record created with id {}",stud.getId());
-		return stud;
-	}
+    public Student createStudent(Student student) {
+        Student stud = studentRepository.save(student);
+        log.info("Record created with id {}", stud.getId());
+        return stud;
+    }
 
-	public List<Student> getAllStudents() {
-		return studentRepository.findAll();
-	}
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
 
-	public Student updateStudent(Student student) {
-		return studentRepository.save(student);
-	}
+    public Student updateStudent(Student student) {
+        return studentRepository.save(student);
+    }
 
-	public String deleteStudent(String id) {
-		studentRepository.deleteById(id);
-		return "Student has been deleted.";
-	}
+    public String deleteStudent(String id) {
+        studentRepository.deleteById(id);
+        return "Student has been deleted.";
+    }
 
-	public Student getStudentById(String id) {
-		return studentRepository.findById(id).get();
-	}
+    public Student getStudentById(String id) {
+        return studentRepository.findById(id).get();
+    }
 
-	public List<Student> getStudentsByName(String name) {
-		return studentRepository.findByName(name);
-	}
+    public List<Student> getStudentsByName(String name) {
+        return studentRepository.findByName(name);
+    }
 
-	public List<Student> getStudentsByNameAndMail(String name, String email) {
-		return studentRepository.findByNameAndEmail(name, email);
-	}
+    public List<Student> getStudentsByNameAndMail(String name, String email) {
+        return studentRepository.findByNameAndEmail(name, email);
+    }
 
-	public List<Student> getStudentsByNameOrMail(String name, String email) {
-		return studentRepository.findByNameOrEmail(name, email);
-	}
+    public List<Student> getStudentsByNameOrMail(String name, String email) {
+        return studentRepository.findByNameOrEmail(name, email);
+    }
 
-	public List<Student> byDepartmentName(String deptName) {
-		return studentRepository.findByDepartmentDepartmentName(deptName);
-	}
+    public List<Student> byDepartmentName(String deptName) {
+        return studentRepository.findByDepartmentDepartmentName(deptName);
+    }
 
-	public List<Student> bySubjectName(String subName) {
-		return studentRepository.findBySubjectsSubjectName(subName);
-	}
+    public List<Student> bySubjectName(String subName) {
+        return studentRepository.findBySubjectsSubjectName(subName);
+    }
 
-	public List<Student> emailLike(String email) {
-		return studentRepository.findByEmailIsLike(email);
-	}
+    public List<Student> emailLike(String email) {
+        return studentRepository.findByEmailIsLike(email);
+    }
 
-	public List<Student> nameStartsWith(String name) {
-		return studentRepository.findByNameStartsWith(name);
-	}
+    public List<Student> nameStartsWith(String name) {
+        return studentRepository.findByNameStartsWith(name);
+    }
 
-	public List<Student> getAllWithPagination(int pageNo, int pageSize) {
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-		return studentRepository.findAll(pageable).getContent();
-	}
+    public List<Student> getAllWithPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return studentRepository.findAll(pageable).getContent();
+    }
 
-	public List<Student> allWithSorting() {
-		Sort sort = Sort.by(Sort.Direction.ASC, "name", "email ");
-		return studentRepository.findAll(sort);
-	}
+    public List<Student> allWithSorting() {
+        Sort sort = Sort.by(Sort.Direction.ASC, "name", "email ");
+        return studentRepository.findAll(sort);
+    }
 
-	public List<Student> getByLocation(String location) {
-		Query query = new Query();
-		query.addCriteria(Criteria.where("department.location").is(location));
-		return mongoTemplate.find(query, Student.class);
-	}
+    public List<Student> getByLocation(String location) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("department.location").is(location));
+        return mongoTemplate.find(query, Student.class);
+    }
 }

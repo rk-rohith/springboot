@@ -1,64 +1,63 @@
 package com.example.demo.entity;
 
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection="Student")
+import java.util.List;
+
+@Document(collection = "Student")
 public class Student {
 
-	@Id
-	private String id;
-	private String name;
-	
-	@Field(name="mail")
-	private String email;
+    @Id
+    private String id;
+    private String name;
 
-	private Department department;
-	private List<Subject> subjects;
+    @Field(name = "mail")
+    private String email;
 
-	public String getId() {
-		return id;
-	}
+    private Department department;
+    private List<Subject> subjects;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public Department getDepartment() {
-		return department;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
+    public Department getDepartment() {
+        return department;
+    }
 
-	public List<Subject> getSubjects() {
-		return subjects;
-	}
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
-	public void setSubjects(List<Subject> subjects) {
-		this.subjects = subjects;
-	}
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
 
-	
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
 
 }

@@ -4,26 +4,26 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Subject {
 
-	@Field(name="subject_name")
-	private String subjectName;
-	
-	@Field(name="marks_obtained")
-	private String marksObtained;
+    @Field(name = "subject_name")
+    private String subjectName;
 
-	public String getSubjectName() {
-		return subjectName;
-	}
+    @Field(name = "marks_obtained")
+    private String marksObtained;
 
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
-	}
+    public String getSubjectName() {
+        return subjectName;
+    }
 
-	public String getMarksObtained() {
-		return marksObtained;
-	}
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
 
-	public void setMarksObtained(String marksObtained) {
-		this.marksObtained = marksObtained;
-	}
+    public String getMarksObtained() {
+        return marksObtained;
+    }
+
+    public void setMarksObtained(String marksObtained) {
+        this.marksObtained = marksObtained;
+    }
 
 }
