@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.StudentRepository;
 import com.example.demo.entity.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
+@Slf4j
 @Service
 public class StudentService {
 
@@ -24,7 +26,9 @@ public class StudentService {
 	MongoTemplate mongoTemplate;
 
 	public Student createStudent(Student student) {
-		return studentRepository.save(student);
+		Student stud = studentRepository.save(student);
+		log.info("Record created with id {}",stud.getId());
+		return stud;
 	}
 
 	public List<Student> getAllStudents() {
