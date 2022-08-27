@@ -59,6 +59,11 @@ public class StudentController {
         return studentService.byDepartmentName(deptName);
     }
 
+    @GetMapping("/byDepartmentId")
+    public List<Student> byDepartmentId(@RequestParam String deptId) {
+        return studentService.byDepartmentId(deptId);
+    }
+
     @GetMapping("/bySubjectName")
     public List<Student> bySubjectName(@RequestParam String subName) {
         return studentService.bySubjectName(subName);

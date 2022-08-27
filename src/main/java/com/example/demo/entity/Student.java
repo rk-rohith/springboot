@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -16,7 +17,10 @@ public class Student {
     @Field(name = "mail")
     private String email;
 
+    @DBRef
     private Department department;
+
+    @DBRef
     private List<Subject> subjects;
 
     public String getId() {

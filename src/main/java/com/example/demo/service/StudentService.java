@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.dao.DepartmentRepository;
 import com.example.demo.dao.StudentRepository;
+import com.example.demo.dao.SubjectRepository;
 import com.example.demo.entity.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,22 @@ public class StudentService {
     StudentRepository studentRepository;
 
     @Autowired
+    DepartmentRepository departmentRepository;
+
+    @Autowired
+    SubjectRepository subjectRepository;
+
+    @Autowired
     MongoTemplate mongoTemplate;
 
     public Student createStudent(Student student) {
+        if (student.getDepartment() != null) {
+            departmentRepository.save(student.getDepartment());
+        }
+
+        if (student.getSubjects() != null && student.getSubjects().size() > 0) {
+            subjectRepository.saveAll(student.getSubjects());
+        }
         Student stud = studentRepository.save(student);
         log.info("Record created with id {}", stud.getId());
         return stud;
@@ -90,5 +105,9 @@ public class StudentService {
         Query query = new Query();
         query.addCriteria(Criteria.where("department.location").is(location));
         return mongoTemplate.find(query, Student.class);
+    }
+
+    public List<Student> byDepartmentId(String deptId) {
+        return studentRepository.findByDepartmentId(deptId);
     }
 }
