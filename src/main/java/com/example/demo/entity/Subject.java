@@ -13,7 +13,7 @@ public class Subject {
     private String subjectName;
 
     @Field(name = "marks_obtained")
-    private String marksObtained;
+    private int marksObtained;
 
     public String getId() {
         return id;
@@ -31,11 +31,11 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public String getMarksObtained() {
+    public int getMarksObtained() {
         return marksObtained;
     }
 
-    public void setMarksObtained(String marksObtained) {
+    public void setMarksObtained(int marksObtained) {
         this.marksObtained = marksObtained;
     }
 
